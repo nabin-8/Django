@@ -15,3 +15,24 @@ class Artist(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'artist'
+        verbose_name_plural = 'artists'
+
+class Music(models.Model):
+    GENRE_CHOICES = [
+        ('r', 'Rock'),
+        ('p', 'Pop'),
+        ('j', 'Jazz'),
+        ('h', 'Hip Hop'),
+        ('c', 'Classical'),
+        ('f', 'Folk'),
+        ('c', 'Country')
+    ]
+    artist_id = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    album_name = models.CharField(max_length=255)
+    genre = models.CharField(max_length=1, choices=GENRE_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
