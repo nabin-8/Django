@@ -1,0 +1,15 @@
+{% entends "artists/base.html"%}
+
+{% block content %}
+    <h1>Artists</h1>
+    <a href="{% url 'artist create' %}">Add New Artist</a>
+    <ul>
+        {% for artist in artists %}
+            <li>
+                <a href="{% url 'artist_detail' artist.id %}">{{ artist.name }}</a>
+                (<a href="{% url 'artist_update' artist.pk %}">Edit</a> |
+                <a href="{% url 'artist_delete' artist.pk %}">Delete</a>)
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

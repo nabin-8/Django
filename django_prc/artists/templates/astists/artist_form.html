@@ -1,0 +1,12 @@
+{% entends "artists/base.html"%}
+
+{% block content %}
+
+    <h2>{% if form.instance.pk %} Edit Artist{% else %}New Artist{% endif %}</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+    <a href="{% url 'artist_list' %}">Cancel</a>
+{% endblock %}
