@@ -30,7 +30,7 @@ class Music(models.Model):
         ('f', 'Folk'),
         ('c', 'Country')
     ]
-    artist_id = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    artist_id = models.ImageField()
     title = models.CharField(max_length=255)
     album_name = models.CharField(max_length=255)
     genre = models.CharField(max_length=1, choices=GENRE_CHOICES)
