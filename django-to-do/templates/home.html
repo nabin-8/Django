@@ -24,21 +24,25 @@
         <div class="row">
             <h4>My Day</h4>
             <p class="text-muted">{% now "jS F Y" %}</p>
-            <div class="col-md-7 col-lg-7" style="height: 450px; overflow: scroll;">
-                <!-- List of all the tasks for the day -->
-                {# {{ [tasks,completed_tasks]|pprint }} #}
-                 {% for task in tasks %}
-                    <div class="card m-1">
-                        <div class="card-body">
-                            {{ task.task }}
-                            <span style="position: relative; float: right;">
-                                <a href="{% url 'mark_as_done' task.pk %}" class="btn btn-success"><i class="fa fa-check"></i> Mark as Done</a>
-                                <a href="{% url 'delete_task' task.pk %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                <a type="button" data-bs-task-id="{{ task.pk }}" data-bs-task-text="{{ task.task }}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-pencil"></i></a>
-                            </span>
+            <div class="col-md-7 col-lg-7">
+                <h5>Recent Tasks</h5>
+                <hr>
+                <div style="height: 40vh; overflow-y: auto;">
+                    <!-- List of all the tasks for the day -->
+                        {# {{ [tasks,completed_tasks]|pprint }} #}
+                    {% for task in tasks %}
+                        <div class="card m-1">
+                            <div class="card-body">
+                                {{ task.task }}
+                                <span style="position: relative; float: right;">
+                                    <a href="{% url 'mark_as_done' task.pk %}" class="btn btn-success"><i class="fa fa-check"></i> Mark as Done</a>
+                                    <a href="{% url 'delete_task' task.pk %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                    <a type="button" data-bs-task-id="{{ task.pk }}" data-bs-task-text="{{ task.task }}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-pencil"></i></a>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -78,18 +82,21 @@
             </div>
             <div class="col-md-5 col-lg-5">
                 <h5>Completed Tasks</h5>
-                <!-- List of all the tasks that have completed -->
-                {% for complete in completed_tasks %}
-                    <div class="card m-1">
-                        <div class="card-body">
-                            {{ complete.task }}
-                            <span style="position: relative; float: right;">
-                                <a href="{% url 'mark_as_undone' complete.pk %}" class="btn btn-secondary"><i class="fa fa-times"></i> Mark as Undone</a>
-                                <a href="{% url 'delete_task' complete.pk %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                            </span>
+                <hr>
+                <div style="height: 40vh; overflow-y: auto;">
+                    <!-- List of all the tasks that have completed -->
+                    {% for complete in completed_tasks %}
+                        <div class="card m-1">
+                            <div class="card-body">
+                                {{ complete.task }}
+                                <span style="position: relative; float: right;">
+                                    <a href="{% url 'mark_as_undone' complete.pk %}" class="btn btn-secondary"><i class="fa fa-times"></i> Mark as Undone</a>
+                                    <a href="{% url 'delete_task' complete.pk %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <div class="row">
