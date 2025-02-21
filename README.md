@@ -322,3 +322,59 @@ python manage.py runserver
 Open your web browser and go to `http://127.0.0.1:8000/` to see the default Django welcome page.
 
 You have successfully set up your Django project and run the development server. In the next stages, we will create the To-Do app and add functionalities.
+
+### Stage 2: Database Migration and Superuser Creation
+
+In this stage, we will migrate the default SQLite3 database and create a superuser.
+
+#### Step 1: Migrate the Database
+
+Run the following command to apply the initial migrations and set up the database:
+```bash
+python manage.py migrate
+```
+
+#### Step 2: Create a Superuser
+
+Create a superuser to access the Django admin interface:
+```bash
+python manage.py createsuperuser
+```
+Follow the prompts to set the username, email, and password for the superuser.
+
+### Stage 3: Create a Home Page
+
+In this stage, we will create a simple home page without creating a new app.
+
+#### Step 1: Modify `urls.py`
+
+Edit the `urls.py` file in the `todo` directory to include a URL pattern for the home page:
+```python
+from django.contrib import admin
+from django.urls import path
+from todo import views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", views.home, name="home"),
+]
+```
+#### Step 3: Create Views for Home Page
+Create views.py and create home method
+```python
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("<h1>How are you?</h1>")
+```
+
+#### Step 3: Run the Development Server
+
+Run the development server to see the changes:
+```bash
+python manage.py runserver
+```
+
+Open your web browser and go to `http://127.0.0.1:8000/` to see the home page with the message "Welcome to the Django To-Do App".
+
+You have successfully migrated the database, created a superuser, and created a home page without creating a new app.
