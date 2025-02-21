@@ -268,7 +268,7 @@ For more in-depth learning, consider the following resources:
 
 By following these steps and utilizing these resources, you can effectively learn and master Django.
 
-## Creating a Simple Django To-Do App
+# Creating a Simple Django To-Do App
 
 ### Stage 1: Installation and Setup
 
