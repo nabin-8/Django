@@ -1,0 +1,204 @@
+a {
+    text-decoration: none;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+h2 {
+    text-align: start;
+    margin-bottom: 10px;
+    color: #333;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10px;
+}
+
+body {
+    font-family: "Lato", serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 750px;
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+input[type=text],
+input[type=password],
+textarea {
+    border: 1px solid #6c757d;
+}
+
+form label {
+    display: block !important;
+    margin-bottom: 5px;
+}
+
+.done-icon {
+    font-size: 38px;
+    color: green;
+    margin-left: 10px;
+}
+
+.card {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    border-radius: 5px;
+}
+
+.count-container {
+    margin-left: 16px;
+}
+
+.superusers {
+    color: #333;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 1px solid #333;
+    width: 0;
+    animation: typing 2s steps(30) 1s forwards, blink 0.75s step-end infinite;
+}
+
+.username {
+    width: 370px;
+}
+
+/* Typing & Cursor blink animation effect */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.delete-text {
+    font-size:16px;
+}
+.add-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.add-icon a {
+    text-decoration: none;
+    color: white;
+}
+
+.add-icon:hover {
+    background-color: #0056b3;
+}
+
+.logout-section {
+
+    position: absolute;
+    margin-top: -88px;
+}
+
+.task {
+    padding: 10px;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-count {
+    font-style: italic;
+    color: blue;
+    font-weight: bold;
+}
+
+.task:last-child {
+    border-bottom: none;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.title:hover {
+    color: #0056b3;
+    font-size: 24px;
+}
+
+.description {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #6c757d;
+}
+
+.deadline {
+    font-size: 14px;
+    color: #adb5bd;
+}
+
+.tooltip {
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    /* Position above the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}
