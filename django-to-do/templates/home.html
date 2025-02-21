@@ -26,19 +26,55 @@
             <p class="text-muted">{% now "jS F Y" %}</p>
             <div class="col-md-7 col-lg-7" style="height: 450px; overflow: scroll;">
                 <!-- List of all the tasks for the day -->
-                {% comment %} {{ [tasks,completed_tasks]|pprint }} {% endcomment %}
+                {# {{ [tasks,completed_tasks]|pprint }} #}
                  {% for task in tasks %}
                     <div class="card m-1">
                         <div class="card-body">
                             {{ task.task }}
                             <span style="position: relative; float: right;">
                                 <a href="{% url 'mark_as_done' task.pk %}" class="btn btn-success"><i class="fa fa-check"></i> Mark as Done</a>
-                                <a class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                <a class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                <a href="{% url 'delete_task' task.pk %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                <a type="button" data-bs-task-id="{{ task.pk }}" data-bs-task-text="{{ task.task }}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-pencil"></i></a>
                             </span>
                         </div>
                     </div>
                 {% endfor %}
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit To-Do</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="{% url 'edit_task' %}" method="POST">
+                            <div class="modal-body">
+                                {% csrf_token %}
+                                <input type="hidden" name="task_id" id="task_id">
+                                <input type="text" class="form-control" name="task_edit" id="task_edit">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                        <script>
+                            const exampleModal = document.getElementById('exampleModal')
+                            exampleModal.addEventListener('show.bs.modal', function (event) {
+                                let button = event.relatedTarget
+                                let taskId = button.getAttribute('data-bs-task-id')
+                                let taskText = button.getAttribute('data-bs-task-text')
+                                
+                                let modalTaskId = exampleModal.querySelector('#task_id')
+                                let modalTaskEdit = exampleModal.querySelector('#task_edit')
+                                
+                                modalTaskId.value = taskId
+                                modalTaskEdit.value = taskText
+                            })
+                        </script>
+                    </div>
+                </div>
             </div>
             <div class="col-md-5 col-lg-5">
                 <h5>Completed Tasks</h5>
@@ -47,6 +83,10 @@
                     <div class="card m-1">
                         <div class="card-body">
                             {{ complete.task }}
+                            <span style="position: relative; float: right;">
+                                <a href="{% url 'mark_as_undone' complete.pk %}" class="btn btn-secondary"><i class="fa fa-times"></i> Mark as Undone</a>
+                                <a href="{% url 'delete_task' complete.pk %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                            </span>
                         </div>
                     </div>
                 {% endfor %}
