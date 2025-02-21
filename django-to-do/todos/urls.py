@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path("addTask/", views.addTask, name="addTask"),
-    # path("completeTask/<int:task_id>/", views.completeTask, name="completeTask"),
+    path("mark_as_done/<int:pk>/", views.mark_as_done, name="mark_as_done"),
 ]
